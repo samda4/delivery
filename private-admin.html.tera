@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>
+        Админ
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+    <link href="css/admin.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper ">
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="images/sidebar.jpg">
+            <div class="logo"><a href="http://localhost:8000/private" class="simple-text logo-normal">
+          АДМИН ПАНЕЛ
+        </a></div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item  ">
+                        <a class="nav-link" href="http://localhost:8000/file_admin">
+                            <p><img border="0" alt="youtube" src="images/file_2.png" width="25" height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Файл</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link" href="http://localhost:8000/private_admin">
+                            <p><img border="0" alt="youtube" src="images/private_2.png" width="25" height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Хувийн мэдээлэл</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/user">
+                            <p><img border="0" alt="youtube" src="images/user.png" width="25" height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Хэрэглэгч</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active-pro ">
+                        <a class="nav-link" href="http://localhost:8000">
+                            <p><img border="0" alt="youtube" src="images/logout.png" width="25" height="25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Гарах</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="javascript:;">Хувийн мэдээлэл</a>
+                    </div>
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Хувийн мэдээллийн хүснэгт</h4>
+                                </div>
+                                <div class="card-body">
+                                    {% for admin in admins %}
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Нэвтрэх нэр</label>
+                                                    <div class="form-group">
+                                                    <input type="text" class="form-control" name="user_name" id="user_name" value="{{ admin.user_name }}">
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Нууц үг</label>
+                                                    <div class="form-group">
+                                                    <input type="password" class="form-control" name="password" id="password" value ="{{ admin.password }}">
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="javascript:;">
+                                        <img class="img" src="images/faces/samdaa.jpg" />
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-category text-gray">SOFTWARE ENGINEER</h6>
+                                    <h4 class="card-title">Дамба Самданжигмэд</h4>
+                                    <p class="card-description">
+                                        1997 оны 8 сарын 23 ны өдөр Баянхонгор аймгийн Баянцагаан суманд төрсөн. 2015 онд Нийслэлийн 5 дугаар бүрэн дунд сургуулийг төгссөн. 2020 онд Монгол улсын их сургуулийн Хэрэглээний шинжлэх ухаан инженерчлэлийн сургуулийг програм хангамж мэргэжлээр төгссөн.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="float-left">
+                        <ul>
+                            <li>
+                                <a href="https://www.youtube.com">
+                                    <img border="0" alt="youtube" src="images/youtube.png" width="35" height="35"> Youtube
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com">
+                                    <img border="0" alt="facebook" src="images/facebook.png" width="35" height="35"> Facebook
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.twitter.com">
+                                    <img border="0" alt="twitter" src="images/twitter.png" width="35" height="35"> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.google.com">
+                                    <img border="0" alt="google" src="images/google.png" width="35" height="35"> Google
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright float-right">
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>, Бүх эрх хуулиар хамгаалагдсан
+                    </div>
+                </div>
+            </footer>
+            </div>
+        </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-material-design.min.js"></script>
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="js/material-dashboard.js"></script>
+</body>
+
+</html>

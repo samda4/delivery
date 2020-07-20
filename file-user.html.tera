@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+        <title>
+            Админ
+        </title>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+        <link href="css/admin.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="sidebar" data-color="purple" data-background-color="white" data-image="images/sidebar.jpg">
+                <div class="logo">
+                    <a href="http://localhost:8000/admin" class="simple-text logo-normal">
+                        АДМИН ПАНЕЛ
+                    </a>
+                </div>
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://localhost:8000/file-user">
+                                <p><img border="0" alt="file" src="images/file.png" width="25" height="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Файл</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost:8000/private_user">
+                                <p><img border="0" alt="private" src="images/private.png" width="25" height="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Хувийн мэдээлэл</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active-pro">
+                            <a class="nav-link" href="http://localhost:8000">
+                                <p><img border="0" alt="index" src="images/logout.png" width="25" height="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Гарах</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-panel">
+                <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-wrapper">
+                            <a class="navbar-brand" href="javascript:;">ФАЙЛ</a>
+                        </div>
+                        {% if msg %}
+                        <small class="message">
+                            {{ msg.1 }}
+                        </small>
+                        {% endif %}
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                        </button>
+                    </div>
+                </nav>
+                <div class="content">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">Файлын хүснэгт</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <th>
+                                                ID
+                                            </th>
+                                            <th>
+                                                Нэр
+                                            </th>
+                                            <th>
+                                                Огноо
+                                            </th>
+                                            <th>
+                                                Ангилал
+                                            </th>
+                                            <th>Файл</th>
+                                            <th></th>
+                                        </thead>
+                                                <tbody>
+                                                    {% for file in files %}
+                                                    <tr>
+                                                        <td>
+                                                            <span class="completed">{{ file.id }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="completed">{{ file.name }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="completed">{{ file.date }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="completed">{{ file.category }}</span>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                     <iframe controls="true" id="iFrame1" scrolling="no" &autoplay=false src="file/{{ file.file }}" frameborder="0" height="80"
+                                                        width="50%" ></iframe>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            <form class="inline" action="/user_add_file/{{file.id}}" method="post">
+                                                                <input type="hidden" name="_method" value="delete" />
+                                                                <button class="btn btn-primary pull-right" input type="submit">Устгах</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">Файл нэмэх</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="/user_add_file" method="post" class="form">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Файлын нэр</label>
+                                                        <div class="form-group">
+                                                            <input type="text" id="name" name="name" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Огноо</label>
+                                                        <div class="form-group">
+
+                                                            <input type="date" value="2020-05-21" name="date" id="date">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Ангилал</label>
+                                                        <div class="form-group">
+                                                            <div class="custom-select" style="width: 200px;">
+                                                                <select name="category" id="category">
+                                                                    <option value="БИЧВЭР">БИЧВЭР</option>
+                                                                    <option value="ЗУРАГ">ЗУРАГ</option>
+                                                                    <option value="ДУУ">ДУУ</option>
+                                                                    <option value="ВИДЕО">ВИДЕО</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-100">
+                                                    <label class="bmd-label-floating-2">Файл сонгох</label>
+                                                    <div class="f">
+                                                        <div class="file-upload">
+                                                            <div class="file-select">
+                                                                <div class="file-select-button" id="fileName">ОРУУЛАХ</div>
+                                                                <div class="file-select-name" id="noFile"></div>
+                                                                <input type="file" name="file" id="file" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary pull-right" input type="submit">Хадгалах</button>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="float-left">
+                            <ul>
+                                <li>
+                                    <a href="https://www.youtube.com"> <img border="0" alt="youtube" src="images/youtube.png" width="35" height="35" /> Youtube </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com"> <img border="0" alt="facebook" src="images/facebook.png" width="35" height="35" /> Facebook </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.twitter.com"> <img border="0" alt="twitter" src="images/twitter.png" width="35" height="35" /> Twitter </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.google.com"> <img border="0" alt="google" src="images/google.png" width="35" height="35" /> Google </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright float-right">
+                            <script>
+                                document.write(new Date().getFullYear());
+                                $(document).ready(function () {
+    var ownVideos = $("iframe");
+    $.each(ownVideos, function (i, video) {                
+        var frameContent = $(video).contents().find('body').html();
+        if (frameContent) {
+            $(video).contents().find('body').html(frameContent.replace("autoplay", ""));
+        }
+    });
+});
+                            </script>
+                            , Бүх эрх хуулиар хамгаалагдсан
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap-material-design.min.js"></script>
+        <script src="js/perfect-scrollbar.jquery.min.js"></script>
+        <script src="js/material-dashboard.js"></script>
+    </body>
+</html>
