@@ -156,7 +156,7 @@
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Хоолны тайлбар</label>
                                                         <div class="form-group">
-                                                            <input type="text" id="cost" name="name" class="form-control" />
+                                                            <input type="text" id="cost" name="cost" class="form-control" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,13 +176,13 @@
                                                         <label class="bmd-label-floating">Ангилал</label>
                                                         <div class="form-group">
                                                             <div class="custom-select" style="width: 200px;">
-                                                                <select name="category" id="type">
-                                                                    <option value="БИЧВЭР">Монгол</option>
-                                                                    <option value="ЗУРАГ">Солонгос</option>
-                                                                    <option value="ДУУ">Пицца</option>
-                                                                    <option value="ВИДЕО">Тахиа</option>
-                                                                    <option value="ВИДЕО">Уух зүйлс</option>
-                                                                    <option value="ВИДЕО">Олон үндэстэний</option>
+                                                                <select name="type" id="type">
+                                                                    <option value="Монгол">Монгол</option>
+                                                                    <option value="Солонгос">Солонгос</option>
+                                                                    <option value="Пицца">Пицца</option>
+                                                                    <option value="Тахиа">Тахиа</option>
+                                                                    <option value="Уух зүйлс">Уух зүйлс</option>
+                                                                    <option value="Олон үндэстэний">Олон үндэстэний</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -191,11 +191,11 @@
                                                 <div class="col-md-100">
                                                     <label class="bmd-label-floating-2">Зураг</label>
                                                     <div class="form-group">
-                                                            <input type="text" id="image" name="name" class="form-control" />
+                                                            <input type="text" id="image" name="image" class="form-control" />
                                                         </div>
                                                 </div>
                                             </div>
-                                            <button onclick="myFunction()" class="btn btn-primary pull-right" input type="submit" value="submt">Хадгалах</button>
+                                            <button onclick="myFunction()" class="btn btn-primary pull-right" input type="submit">Хадгалах</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
