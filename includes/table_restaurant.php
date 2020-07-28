@@ -40,8 +40,14 @@
                 $total_records = $total_records['total_records'];
                 $total_no_of_pages = ceil($total_records / $total_records_per_page);
                 $second_last = $total_no_of_pages - 1; // total pages minus 1
+                if($page_no == 1){
+                    $i=1;
+                }
+                else{
+                $i =  $previous_page * $total_records_per_page;
+                }
                 $sql = "SELECT * FROM `restaurant` order by `restaurant`.`id` desc LIMIT $offset, $total_records_per_page;";
-
+                
                 $result = mysqli_query($link, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 if ($resultCheck > 0)
@@ -51,6 +57,7 @@
         <tbody>
         <tr>
             <td>
+            <?php echo $i++;?>
             </td>
             <td>
             <a href="food_index.php?&id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a>

@@ -23,12 +23,12 @@
             </div>
             <div class="card-body">
                <div class="table-responsive">
-               <?php if(isset($_POST['submit']))
+               <?php  $i=1;
+               if(isset($_POST['submit']))
                   include("includes/search_restaurant.php"); 
                else{
                   include("includes/table_restaurant.php"); 
                }?>
-               
                </div>
             </div>
          </div>

@@ -35,7 +35,8 @@
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Тайлбар</label>
                                                         <div class="form-group">
-                                                            <input type="text" id="comment" name="comment" class="form-control" />
+                                                        <textarea name="editor" id="editor" rows="10" cols="80">
+                                                        </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -86,4 +87,4 @@
                             </div>
                         </div>
                     </div>
-                    <?php include("includes/admin_footer.php"); ?>
+<?php include("includes/admin_footer.php"); ?>

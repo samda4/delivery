@@ -31,13 +31,13 @@ if(isset($_FILES['image'])){
 
 // Escape user inputs for security
 $name = mysqli_real_escape_string($link, $_POST['name']);
-$comment = mysqli_real_escape_string($link, $_POST['comment']);
 $phone = mysqli_real_escape_string($link, $_POST['phone']);
 $address = mysqli_real_escape_string($link, $_POST['address']);
 $res_link = mysqli_real_escape_string($link, $_POST['link']);
+$editorContent = mysqli_real_escape_string($link, $_POST['editor']);
  
 // Attempt insert query execution
-$sql = "INSERT INTO restaurant (name, comment, phone, address, link, image) VALUES ('$name', '$comment', '$phone', '$address', '$res_link', '$file_name')";
+$sql = "INSERT INTO restaurant (name, comment, phone, address, link, image) VALUES ('$name', '$editorContent', '$phone', '$address', '$res_link', '$file_name')";
 if ($link->query($sql) === TRUE) { 
     header('Location: http://localhost/delivery/restaurant_index.php');
  } 
