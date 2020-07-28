@@ -32,15 +32,15 @@ if(isset($_FILES['image'])){
 // Escape user inputs for security
 $name = mysqli_real_escape_string($link, $_POST['name']);
 $comment = mysqli_real_escape_string($link, $_POST['comment']);
-$cost = mysqli_real_escape_string($link, $_POST['cost']);
-$idc = mysqli_real_escape_string($link, $_POST['idc']);
-$date = mysqli_real_escape_string($link, $_POST['date']);
+$phone = mysqli_real_escape_string($link, $_POST['phone']);
+$address = mysqli_real_escape_string($link, $_POST['address']);
+$res_link = mysqli_real_escape_string($link, $_POST['link']);
  
 // Attempt insert query execution
-$sql = "INSERT INTO `best_food` (`r_id`, `name`, `cost`, `image`, `date`, `comment`, `idc`) VALUES ('".$_GET['id']."', '$name', '$cost', '$file_name', '$date', '$comment', '$idc')";
+$sql = "INSERT INTO restaurant (name, comment, phone, address, link, image) VALUES ('$name', '$comment', '$phone', '$address', '$res_link', '$file_name')";
 if ($link->query($sql) === TRUE) { 
-    header('Location: http://localhost/delivery/food_index.php?&id='.$_GET['id']);
-} 
+    header('Location: http://localhost/delivery/restaurant_index.php');
+ } 
  else { 
      echo "Error: " . $sql . "<br>" . $link->error; 
     }

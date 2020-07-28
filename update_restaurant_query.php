@@ -2,7 +2,8 @@
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 include_once 'include/dbh.inc.php';
-
+// Escape user inputs for security
+$file_name = "";
 if(isset($_FILES['image'])){
     $errors= array();
     $file_name = $_FILES['image']['name'];
@@ -29,22 +30,30 @@ if(isset($_FILES['image'])){
     }
  }
 
-// Escape user inputs for security
+$id = mysqli_real_escape_string($link, $_POST['id']);
 $name = mysqli_real_escape_string($link, $_POST['name']);
 $comment = mysqli_real_escape_string($link, $_POST['comment']);
-$cost = mysqli_real_escape_string($link, $_POST['cost']);
-$idc = mysqli_real_escape_string($link, $_POST['idc']);
-$date = mysqli_real_escape_string($link, $_POST['date']);
- 
+$phone = mysqli_real_escape_string($link, $_POST['phone']);
+$res_link = mysqli_real_escape_string($link, $_POST['link']);
+$image = mysqli_real_escape_string($link, $_POST['image']);
+$address = mysqli_real_escape_string($link, $_POST['address']);
+if($file_name !=""){
+$sql = "UPDATE restaurant SET name='$name', comment = '$comment', phone = '$phone', link = '$res_link', 
+image = '$file_name', address='$address' WHERE id ='$id'";
+}
+else{
+    $sql = "UPDATE restaurant SET name='$name', comment = '$comment', phone = '$phone', link = '$res_link', 
+     address='$address' WHERE id ='$id'";  
+}
 // Attempt insert query execution
-$sql = "INSERT INTO `best_food` (`r_id`, `name`, `cost`, `image`, `date`, `comment`, `idc`) VALUES ('".$_GET['id']."', '$name', '$cost', '$file_name', '$date', '$comment', '$idc')";
 if ($link->query($sql) === TRUE) { 
-    header('Location: http://localhost/delivery/food_index.php?&id='.$_GET['id']);
-} 
+    header('Location: http://localhost/delivery/restaurant_index.php');
+ } 
  else { 
      echo "Error: " . $sql . "<br>" . $link->error; 
     }
  
 // Close connection 
 mysqli_close($link);
+
 ?>

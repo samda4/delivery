@@ -47,6 +47,13 @@
                                 <div class="main__menu__wrap">
                                     <nav class="main__menu__nav d-none d-lg-block">
                                         <ul class="mainmenu">
+                                            <li class="drop"><a href="menu-grid.html">Ресторан</a>
+                                                <ul class="dropdown__menu">
+                                                    <li><a href="menu-grid.html">Menu Grid</a></li>
+                                                    <li><a href="menu-list.html">Menu List</a></li>
+                                                    <li><a href="menu-details.html">Menu Details</a></li>
+                                                </ul>
+                                            </li>
                                             <li class="drop"><a href="index.php">Хоол</a>
                                             <ul class="dropdown__menu">
                                                     <li><a href="menu-grid.html">Солонгос</a></li>
@@ -55,14 +62,6 @@
                                                     <li><a href="menu-grid.html">Пицца</a></li>
                                                     <li><a href="menu-list.html">Тахиа</a></li>
                                                     <li><a href="menu-details.html">Уух зүйлс</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="about-us.html">About</a></li>
-                                            <li class="drop"><a href="menu-grid.html">Menu</a>
-                                                <ul class="dropdown__menu">
-                                                    <li><a href="menu-grid.html">Menu Grid</a></li>
-                                                    <li><a href="menu-list.html">Menu List</a></li>
-                                                    <li><a href="menu-details.html">Menu Details</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="gallery.html">Gallery</a></li>

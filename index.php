@@ -3,7 +3,7 @@
 <div class="slider__area slider--four">
     <div class="slider__activation--1">
         <!-- Start Single Slide -->
-        <div class="slide slider__fixed--height bg-image--14 poss--relative">
+        <div class="slide slider__fixed--height bg-image--21 poss--relative">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -40,7 +40,7 @@
             <!-- Start Single Popular Food -->
             <?php
                             $sql = "SELECT * FROM best_food;";
-                            $result = mysqli_query($conn, $sql);
+                            $result = mysqli_query($link, $sql);
                             $resultCheck = mysqli_num_rows($result);
                             if ($resultCheck > 0){
                                 while ($row = mysqli_fetch_assoc($result)){ ?>
@@ -48,10 +48,10 @@
                 <div class="popular__food">
                     <div class="pp_food__thumb">
                         <a href="menu-details.html">
-                            <img src="<?php  echo $row['image'];?>" alt="popular food">
+                            <img src="images/<?php  echo $row['image'];?>" alt="popular food"width="500" height="200">
                         </a>
                         <div class="pp__food__prize">
-                            <span><?php  echo $row['cost'];?>$</span>
+                            <span><?php  echo $row['cost'];?></span>
                         </div>
                     </div>
                     <div class="pp__food__inner">
@@ -64,7 +64,7 @@
                                 <li><i class="zmdi zmdi-star"></i></li>
                                 <li class="rating__opasity"><i class="zmdi zmdi-star"></i></li>
                             </ul>
-                            <p><?php  echo $row['time'];?></p>
+                            <p><?php  echo $row['date'];?></p>
                             <div class="pp__food__bottom d-flex justify-content-between align-items-center">
                                 <div class="pp__btn">
                                     <a class="food__btn btn--transparent btn__hover--theme btn__hover--theme" href="#">Захиалга хийх</a>
@@ -103,7 +103,7 @@
         <div class="row mt--40">
         <?php
                             $sql = "SELECT * FROM new_food;";
-                            $result = mysqli_query($conn, $sql);
+                            $result = mysqli_query($link, $sql);
                             $resultCheck = mysqli_num_rows($result);
                             if ($resultCheck > 0){
                                 while ($row = mysqli_fetch_assoc($result)){ ?>
