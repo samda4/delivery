@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="index_restaurant.php">
                                         <img src="images/logo/foody.png" alt="logo images">
                                     </a>
                                 </div>
@@ -47,21 +47,38 @@
                                 <div class="main__menu__wrap">
                                     <nav class="main__menu__nav d-none d-lg-block">
                                         <ul class="mainmenu">
-                                            <li class="drop"><a href="menu-grid.html">Ресторан</a>
+                                        <li class="drop"><a href="index_restaurant.php">Ресторан</a>
                                                 <ul class="dropdown__menu">
-                                                    <li><a href="menu-grid.html">Menu Grid</a></li>
-                                                    <li><a href="menu-list.html">Menu List</a></li>
-                                                    <li><a href="menu-details.html">Menu Details</a></li>
+                                                <?php
+                                                $sql = "SELECT * FROM `restaurant` order by `restaurant`.`id` desc LIMIT 5;";
+                                                $result = mysqli_query($link, $sql);
+                                                $resultCheck = mysqli_num_rows($result);
+                                                if ($resultCheck > 0)
+                                                {
+                                                    while ($row = mysqli_fetch_assoc($result))
+                                                    { ?>
+                                                    <li><a href="<?php  echo $row['link'];?>"><?php  echo $row['name'];?></a></li>
+                                                <?php    
+                                                }
+                                                }
+                                                ?>
                                                 </ul>
-                                            </li>
-                                            <li class="drop"><a href="index.php">Хоол</a>
+                                        </li>
+                                        <li class="drop"><a href="index.php">Хоол</a>
                                             <ul class="dropdown__menu">
-                                                    <li><a href="menu-grid.html">Солонгос</a></li>
-                                                    <li><a href="menu-list.html">Монгол</a></li>
-                                                    <li><a href="menu-details.html">Олон үндэстний</a></li>
-                                                    <li><a href="menu-grid.html">Пицца</a></li>
-                                                    <li><a href="menu-list.html">Тахиа</a></li>
-                                                    <li><a href="menu-details.html">Уух зүйлс</a></li>
+                                            <?php
+                                                $sql = "SELECT * FROM food_category;";
+                                                $result = mysqli_query($link, $sql);
+                                                $resultCheck = mysqli_num_rows($result);
+                                                if ($resultCheck > 0)
+                                                {
+                                                    while ($row = mysqli_fetch_assoc($result))
+                                                    { ?>
+                                                    <li><a href="<?php  echo $row['link'];?>"><?php  echo $row['categ_name'];?></a></li>
+                                                <?php    
+                                                }
+                                                }
+                                            ?>
                                                 </ul>
                                             </li>
                                             <li><a href="gallery.html">Gallery</a></li>

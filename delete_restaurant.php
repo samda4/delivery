@@ -10,7 +10,7 @@ $sql = "DELETE FROM restaurant WHERE id='$id'";
 
 
 if ($link->query($sql) === TRUE) {
-    header('Location: http://localhost/delivery/restaurant_index.php');
+    header('Location: http://localhost/delivery/restaurant_index.php?page_no='.$_POST['page_no']);
   echo "Амжилттай устгагдлаа";
 } else {
   echo "Error deleting record: " . $link->error;

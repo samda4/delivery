@@ -14,6 +14,7 @@
       </th>
       <th>Тайлбар</th>
       <th>Үнэ</th>
+      <th>Онцлох</th>
       <th>Зураг</th>
       <th></th>
       <th></th>
@@ -29,7 +30,7 @@
             } else {
                $page_no = 1;
                }
-               $total_records_per_page = 3;
+               $total_records_per_page = 5;
                $offset = ($page_no-1) * $total_records_per_page;
                $previous_page = $page_no - 1;
                $next_page = $page_no + 1;
@@ -43,7 +44,7 @@
                   $i=1;
                }
                else{
-               $i =  $previous_page * $total_records_per_page;
+               $i =  $previous_page * $total_records_per_page+1;
                }
                   $sql = "SELECT * FROM `best_food`, `food_category` WHERE `best_food`.`idc` = `food_category`.`cid` AND `best_food`.`r_id` = ".$_GET['id']." ORDER BY `best_food`.`r_id` DESC LIMIT $offset, $total_records_per_page;";
       
@@ -70,10 +71,13 @@
             <?php  echo $row['comment'];?>  
          </td>
          <td>
-            <?php  echo $row['cost'];?>$  
+            <?php  echo $row['cost'];?>  
          </td>
          <td>
-            <img src="images/<?php  echo $row['image'];?>" height="45px;" width=80px;">
+            <input type="checkbox" id="top" name="top" disabled="disabled" value="<?php  echo $row['top'];?>">  
+         </td>
+         <td>
+            <img src="images/<?php  echo $row['image'];?>" height="45px;" width=80px;>
          </td>
          <td class="text-primary">
             <span class="completed">
@@ -81,12 +85,15 @@
          <td class="text-primary">
             <form class="inline" action="delete.php" method="post">
                <input name = "id" type = "hidden" id = "id" value="<?php  echo $row['id'];?>">
+               <input name = "r_id" type = "hidden" id = "r_id" value="<?php  echo $row['r_id'];?>">
+               <input name = "page_no" type = "hidden" id = "page_no" value="<?php  echo $page_no?>">
                <input type="hidden" name="_method" value="delete" />
                <button class="btn btn-primary pull-right" input type="submit">Устгах</button>
             </form>
          </td>
          <td>
-            <a href="update_food.php?&id=<?php  echo $row['id'];?>&r_id=<?php  echo $row['r_id'];?>"><button class="btn btn-primary pull-right" input type="submit">Засах</button></a>
+            <a href="update_food.php?&id=<?php  echo $row['id'];?>&r_id=<?php  echo $row['r_id'];?>&page_no=<?php echo $page_no?>">
+            <button class="btn btn-primary pull-right" input type="submit">Засах</button></a>
          </td>
       </tr>
    </tbody>
@@ -96,15 +103,17 @@
       ?>
 </table>
 <div class="col-md-12">
-                <a <?php if($page_no > 1){
-                echo "href='?page_no=$previous_page'";
-                ?> > &lsaquo;&lsaquo; Prev <?php }?> 
-                </a>
-                <?php if($page_no >= $total_no_of_pages){
-                } ?>
-                <a <?php if($page_no < $total_no_of_pages) {
-                echo "href='?page_no=$next_page'";
-                ?>> Next &rsaquo;&rsaquo;
-                </a>
-                <?php } ?>
+      <?php $sql = "SELECT * FROM best_food";
+         $result = mysqli_query($link, $sql);
+         $row = mysqli_fetch_assoc($result) ?>
+      <?php if($page_no > 1){?>
+      <a href="food_index.php?&id=<?php  echo $row['r_id'];?>&page_no=<?php echo $previous_page?>"> &lsaquo;&lsaquo; Prev
+      </a>
+      <?php } ?>
+      <?php if($page_no >= $total_no_of_pages){
+      } ?>
+      <?php if($page_no < $total_no_of_pages) {?>
+      <a href="food_index.php?&id=<?php  echo $row['r_id'];?>&page_no=<?php echo $next_page?>"> Next &rsaquo;&rsaquo;
+      </a>
+      <?php } ?>
 </div>

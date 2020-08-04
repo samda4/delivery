@@ -1,19 +1,13 @@
 <?php include("includes/restaurant_header.php"); ?>
 <div class="main-panel">
-
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Хоол</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                        </button>
-                </div>
-            </nav>
+            <div class="transition_link">
+            <?php
+            $sql = "SELECT * FROM best_food where id= ".$_GET['id']."; ";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result) ?>
+            <a href="restaurant_index.php">Ресторан</a><a href="food_index.php?&id=<?php echo $row['r_id']; ?>"> &rsaquo;&rsaquo; Хоол</a>
+            <a href="update_food.php?&id=<?php  echo $row['id'];?>&r_id=<?php  echo $row['r_id'];?>&page_no=<?php echo $_GET['page_no']?>"> &rsaquo;&rsaquo; Хоолны мэдээлэл засах</a>
+            </div>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
@@ -54,7 +48,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                                                <div class="col-md-2">
+                                                    <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Огноо</label>
                                                         <div class="form-group">
@@ -81,6 +75,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Онцлох</label>
+                                                        <div class="form-group">
+                                                            <div class="custom-select" style="width: 200px;">
+                                                            <input type="checkbox" id="top" name="top" value ="<?php echo $row['top'];?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-100">
                                                     <label class="bmd-label-floating-2">Зураг</label>
                                                     <div class="f">
@@ -96,6 +100,7 @@
                                             </div>
                                             <input name = "id" type = "hidden" id = "id" value="<?php  echo $row['id'];?>">
                                             <input name = "r_id" type = "hidden" id = "r_id" value="<?php  echo $row['r_id'];?>">
+                                            <input name = "page_no" type = "hidden" id = "page_no" value="<?php  echo $_GET['page_no']?>">
                                             <button onclick="myFunction()" class="btn btn-primary pull-right" input type="submit">Хадгалах</button>
                                             <div class="clearfix"></div>
                                         </form>

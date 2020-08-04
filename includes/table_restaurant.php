@@ -30,7 +30,7 @@
                 {
                 $page_no = 1;
                 }
-                $total_records_per_page = 3;
+                $total_records_per_page = 5;
                 $offset = ($page_no - 1) * $total_records_per_page;
                 $previous_page = $page_no - 1;
                 $next_page = $page_no + 1;
@@ -44,7 +44,7 @@
                     $i=1;
                 }
                 else{
-                $i =  $previous_page * $total_records_per_page;
+                $i =  $previous_page * $total_records_per_page+1;
                 }
                 $sql = "SELECT * FROM `restaurant` order by `restaurant`.`id` desc LIMIT $offset, $total_records_per_page;";
                 
@@ -68,14 +68,14 @@
             <td>
                 <?php echo $row['address']; ?>
             </td>
-            <td>
-                <?php echo $row['comment']; ?>  
+            <td>  
+                <?php  echo mb_substr($row['comment'], 0,100,'UTF-8') ?>  
             </td>
             <td>
-                <?php echo $row['link']; ?>
+                <input type="checkbox" id="top" name="top" disabled="disabled" <?php echo (($row['top'] == 1)? 'checked="checked"' : '')?> value="<?php  echo $row['top'];?>">  
             </td>
             <td>
-                <img src="images/<?php echo $row['image']; ?>" height="45px;" width=80px;">
+                <img src="images/<?php echo $row['image']; ?>" height="45px" width="80px">
             </td>
             <td class="text-primary">
                 <span class="completed">
@@ -83,12 +83,13 @@
             <td class="text-primary">
                 <form class="inline" action="delete_restaurant.php" method="post">
                     <input name = "id" type = "hidden" id = "id" value="<?php echo $row['id']; ?>">
+                    <input name = "page_no" type = "hidden" id = "page_no" value="<?php echo $page_no?>">
                     <input type="hidden" name="_method" value="delete" />
                     <button class="btn btn-primary pull-right" input type="submit">Устгах</button>
                 </form>
             </td>
             <td>
-                <a href="update_restaurant.php?&id=<?php echo $row['id']; ?>"><button class="btn btn-primary pull-right" input type="submit">Засах</button></a>
+                <a href="update_restaurant.php?&id=<?php echo $row['id']; ?>&page_no=<?php echo $page_no?>"><button class="btn btn-primary pull-right" input type="submit">Засах</button></a>
             </td>
         </tr>
         </tbody>

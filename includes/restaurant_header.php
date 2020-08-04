@@ -1,5 +1,10 @@
 <?php
    include_once 'include/dbh.inc.php';
+   session_start();  
+   if(!isset($_SESSION["fullname"]))  
+   {  
+    header("location:login.php");       
+   } 
    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +16,7 @@
         Админ
     </title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+    
     <link href="css/admin.css" rel="stylesheet" />
 </head>
 
@@ -29,13 +35,16 @@
                             <p><img border="0" alt="private" src="file/file.png" width="25" height="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ресторан</p>
                         </a>
                     </li>
+                    <?php if($_SESSION["fullname"] == "admin"){?>
                     <li class="nav-item">
-                        <a class="nav-link" href="file-user.php">
+                        <a class="nav-link" href="users_list.php">
                             <p><img border="0" alt="user" src="images/user.png" width="25" height="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Хэрэглэгч</p>
                         </a>
                     </li>
+                   <?php }?>
+                  
                     <li class="nav-item active-pro">
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="logout.php">
                             <p><img border="0" alt="index" src="images/logout.png" width="25" height="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Гарах</p>
                         </a>
                     </li>

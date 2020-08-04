@@ -1,36 +1,61 @@
-<?php include("includes/restaurant_header.php"); ?>
+<?php include("includes/restaurant_header.php"); 
+error_reporting(E_ALL ^ E_NOTICE);
+$search = mysqli_real_escape_string($link, $_POST['search']);
+?>
 <div class="main-panel">
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-   <div class="container-fluid">
-      <div class="navbar-wrapper">
-         <a class="navbar-brand" href="javascript:;">Хоол</a>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="navbar-toggler-icon icon-bar"></span>
-      <span class="navbar-toggler-icon icon-bar"></span>
-      <span class="navbar-toggler-icon icon-bar"></span>
-      </button>
-</nav>
-         <div class="content">
-            <div class="col-md-12">
-               <div class="card">
-                  <div class="card-header card-header-primary">
-<?php
-   $sql = "SELECT * FROM restaurant where id= ".$_GET['id']."; ";
-   $result = mysqli_query($link, $sql);
-   $row = mysqli_fetch_assoc($result) ?>
-<h4 class="card-title"><?php  echo $row['name'];?> -д дараах хоолнууд байна</h4>
-<a href="add_food.php?&id=<?php  echo $row['id'];?>"><button style="position:absolute; top:4px; left:87%;" class="btn btn-primary pull-right" input type="submit">Хоол нэмэх</button></a>
-</div>
-<div class="card-body">
-<div class="table-responsive">
-<?php include("includes/table_food.php"); ?>
+<div class="s130">
+      <?php
+      $sql = "SELECT * FROM restaurant where id= ".$_GET['id']."; ";
+      $result = mysqli_query($link, $sql);
+      $row = mysqli_fetch_assoc($result) ?>
+      <form action="food_index.php?&id=<?php echo $row['id']; ?>" method="POST">
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </div>
+            <input id="search" type="text" name="search" value="<?php error_reporting(E_ALL ^ E_NOTICE); echo $search ?>"/>
+          </div>
+          <div class="input-field second-wrap">
+            <button class="btn-search" type="submit" name="submit" >ХАИХ</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="transition_link">
+       <a href="restaurant_index.php">Ресторан</a><a href="food_index.php?&id=<?php echo $row['id']; ?>"> &rsaquo;&rsaquo; Хоол</a>
+    </div>
+   <div class="content">
+      <div class="col-md-12">
+         <div class="card ">
+            <div class="xxx card-header-primary">
+                  <?php
+                  $sql = "SELECT * FROM restaurant where id= ".$_GET['id']."; ";
+                  $result = mysqli_query($link, $sql);
+                  $row = mysqli_fetch_assoc($result) ?>
+                  <h4 class="card-title"><?php  echo $row['name'];?> -д дараах хоолнууд байна</h4>
+                  <a href="add_food.php?&id=<?php  echo $row['id'];?>"><button style="position:absolute; top:4px; left:87%;" class="btn btn-primary pull-right" input type="submit">Хоол нэмэх</button></a>
+                  </div>
+                  <div class="card-body">
+                  <div class="table-responsive">
+                  <?php  $i=1;
+               if(isset($_POST['submit'])){
+               if($search ==""){
+                  include("includes/table_food.php"); 
+               }
+               else{
+                  include("includes/search_food.php"); 
+               }
+               }
+               else{
+                  include("includes/table_food.php"); 
+               }?>
                </div>
             </div>
          </div>
       </div>
    </div>
 </div>
-<!-- Start Footer Area -->
 <?php include("includes/admin_footer.php"); ?>

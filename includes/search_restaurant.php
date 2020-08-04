@@ -36,6 +36,13 @@
             $next_page = $page_no + 1;
             $adjacents = "2";
 
+            if($page_no == 1){
+                $i=1;
+            }
+            else{
+            $i =  $previous_page * $total_records_per_page+1;
+            }
+
             $total_records = mysqli_fetch_array($result_count);
             $total_records = $total_records['total_records'];
             $total_no_of_pages = ceil($total_records / $total_records_per_page);
@@ -57,6 +64,7 @@
                             <tbody>
                         <tr>
                             <td>
+                            <?php echo $i++;?>
                             </td>
                             <td>
                             <a href="food_index.php?&id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a>
@@ -68,7 +76,7 @@
                                 <?php echo $row['address']; ?>
                             </td>
                             <td>
-                                <?php echo $row['comment']; ?>  
+                                <?php  echo mb_substr($row['comment'], 0,100,'UTF-8') ?>  
                             </td>
                             <td>
                                 <?php echo $row['link']; ?>
@@ -94,11 +102,6 @@
                         <?php
                             }
                     }
-        else if ($search == "")
-            {
-                echo "Таны хайсан утга хоосон байна";
-            }
-
             else{
                 echo "Таны хайсан ресторан байхгүй байна"; 
             }

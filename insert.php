@@ -28,16 +28,16 @@ if(isset($_FILES['image'])){
        print_r($errors);
     }
  }
-
 // Escape user inputs for security
 $name = mysqli_real_escape_string($link, $_POST['name']);
 $comment = mysqli_real_escape_string($link, $_POST['comment']);
 $cost = mysqli_real_escape_string($link, $_POST['cost']);
 $idc = mysqli_real_escape_string($link, $_POST['idc']);
 $date = mysqli_real_escape_string($link, $_POST['date']);
+$top = mysqli_real_escape_string($link, $_POST['top']);
  
 // Attempt insert query execution
-$sql = "INSERT INTO `best_food` (`r_id`, `name`, `cost`, `image`, `date`, `comment`, `idc`) VALUES ('".$_GET['id']."', '$name', '$cost', '$file_name', '$date', '$comment', '$idc')";
+$sql = "INSERT INTO `best_food` (`r_id`, `name`, `cost`, `image`, `date`, `comment`, `idc`,`top`) VALUES ('".$_GET['id']."', '$name', '$cost', '$file_name', '$date', '$comment', '$idc', '$top')";
 if ($link->query($sql) === TRUE) { 
     header('Location: http://localhost/delivery/food_index.php?&id='.$_GET['id']);
 } 

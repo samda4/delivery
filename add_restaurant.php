@@ -1,18 +1,9 @@
 <?php include("includes/restaurant_header.php"); ?>
 <div class="main-panel">
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Ресторан</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                        </button>
-                </div>
-            </nav>
+<div class="transition_link">
+            <a href="restaurant_index.php">Ресторан</a>
+            <a href="add_restaurant.php"> &rsaquo;&rsaquo; Ресторан нэмэх</a>
+            </div>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
@@ -35,7 +26,7 @@
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Тайлбар</label>
                                                         <div class="form-group">
-                                                        <textarea name="editor" id="editor" rows="10" cols="80">
+                                                        <textarea name="comment" id="comment" rows="10" cols="80">
                                                         </textarea>
                                                         </div>
                                                     </div>

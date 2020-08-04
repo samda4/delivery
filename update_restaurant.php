@@ -1,19 +1,13 @@
 <?php include("includes/restaurant_header.php"); ?>
-<div class="main-panel">
-
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Ресторан</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                        </button>
-                </div>
-            </nav>
+    <div class="main-panel">
+            <div class="transition_link">
+            <?php
+            $sql = "SELECT * FROM restaurant where id= ".$_GET['id']."; ";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result) ?>
+            <a href="restaurant_index.php">Ресторан</a>
+            <a href="update_restaurant.php?&id=<?php  echo $row['id'];?>&page_no=<?php echo $_GET['page_no']?>"> &rsaquo;&rsaquo; Рестораны мэдээлэл засах</a>
+            </div>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
@@ -40,7 +34,8 @@
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Тайлбар</label>
                                                         <div class="form-group">
-                                                            <input type="text" id="comment" name="comment" value="<?php  echo $row['comment'];?>" class="form-control" />
+                                                            <textarea id="comment" name="comment"> <?php  echo $row['comment'];?>
+                                                            </textarea class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -55,10 +50,10 @@
                                                 </div>
                                                                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label class="bmd-label-floating">Холбоос</label>
+                                                        <label class="bmd-label-floating">Онцлох</label>
                                                         <div class="form-group">
 
-                                                            <input type="text" name="link" id="link" value="<?php  echo $row['link'];?>"  class="form-control">
+                                                            <input type="checkbox" name="top" id="top" value="<?php  echo $row['top'];?>"  class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -84,6 +79,7 @@
                                                 </div>
                                             </div>
                                             <input name = "id" type = "hidden" id = "id" value="<?php  echo $row['id'];?>">
+                                            <input name = "page_no" type = "hidden" id = "page_no" value="<?php  echo $_GET['page_no']?>">
                                                                 <input type="hidden" name="_method" value="delete" />
                                             <button onclick="myFunction()" class="btn btn-primary pull-right" input type="submit">Хадгалах</button>
                                             <div class="clearfix"></div>
@@ -93,4 +89,4 @@
                             </div>
                         </div>
                     </div>
-                    <?php include("includes/admin_footer.php"); ?>
+<?php include("includes/admin_footer.php"); ?>

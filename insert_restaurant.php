@@ -34,7 +34,7 @@ $name = mysqli_real_escape_string($link, $_POST['name']);
 $phone = mysqli_real_escape_string($link, $_POST['phone']);
 $address = mysqli_real_escape_string($link, $_POST['address']);
 $res_link = mysqli_real_escape_string($link, $_POST['link']);
-$editorContent = mysqli_real_escape_string($link, $_POST['editor']);
+$editorContent = mysqli_real_escape_string($link, $_POST['comment']);
  
 // Attempt insert query execution
 $sql = "INSERT INTO restaurant (name, comment, phone, address, link, image) VALUES ('$name', '$editorContent', '$phone', '$address', '$res_link', '$file_name')";

@@ -3,7 +3,7 @@
 <div class="slider__area slider--four">
     <div class="slider__activation--1">
         <!-- Start Single Slide -->
-        <div class="slide slider__fixed--height bg-image--21 poss--relative">
+        <div class="slide slider__fixed--height bg-image--14 poss--relative">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -38,17 +38,36 @@
         </div>
         <div class="row mt--30">
             <!-- Start Single Popular Food -->
-            <?php
-                            $sql = "SELECT * FROM best_food;";
-                            $result = mysqli_query($link, $sql);
-                            $resultCheck = mysqli_num_rows($result);
+            <?Php
+                $result_count = mysqli_query($link, "SELECT COUNT(*) As total_records FROM `best_food` WHERE top='1';");
+                if (isset($_GET['page_no']) && $_GET['page_no'] != "")
+                {
+                $page_no = $_GET['page_no'];
+                }
+                else
+                {
+                $page_no = 1;
+                }
+                $total_records_per_page = 6;
+                $offset = ($page_no - 1) * $total_records_per_page;
+                $previous_page = $page_no - 1;
+                $next_page = $page_no + 1;
+                $adjacents = "2";
+
+                $total_records = mysqli_fetch_array($result_count);
+                $total_records = $total_records['total_records'];
+                $total_no_of_pages = ceil($total_records / $total_records_per_page);
+                $second_last = $total_no_of_pages - 1; // total pages minus 1
+                $sql = "SELECT * FROM `best_food` WHERE top ='1'  order by `best_food`.`id` desc LIMIT $offset, $total_records_per_page;";
+                $result = mysqli_query($link, $sql);
+                $resultCheck = mysqli_num_rows($result);
                             if ($resultCheck > 0){
                                 while ($row = mysqli_fetch_assoc($result)){ ?>
             <div class="col-lg-4 col-md-6 col-sm-12 foo">
                 <div class="popular__food">
                     <div class="pp_food__thumb">
                         <a href="menu-details.html">
-                            <img src="images/<?php  echo $row['image'];?>" alt="popular food"width="500" height="200">
+                            <img src="images/<?php  echo $row['image'];?>" alt="popular food"width="500" height="250">
                         </a>
                         <div class="pp__food__prize">
                             <span><?php  echo $row['cost'];?></span>
@@ -82,6 +101,19 @@
                                 }
                             }
                         ?>
+            <div class="col-md-12" style="margin-left:2%">
+                <a <?php if($page_no > 1){
+                echo "href='?page_no=$previous_page'";
+                ?> > &lsaquo;&lsaquo; Өмнөх <?php }?> 
+                </a>
+                <?php if($page_no >= $total_no_of_pages){
+                } ?>
+                <a <?php if($page_no < $total_no_of_pages) {
+                echo "href='?page_no=$next_page'";
+                ?>> Цааш &rsaquo;&rsaquo;
+                </a>
+                <?php } ?>
+            </div>
             <!-- End Single Popular Food -->
         </div>
     </div>
@@ -102,7 +134,7 @@
         </div>
         <div class="row mt--40">
         <?php
-                            $sql = "SELECT * FROM new_food;";
+                            $sql = "SELECT * FROM best_food order by id desc limit 6 ; ";
                             $result = mysqli_query($link, $sql);
                             $resultCheck = mysqli_num_rows($result);
                             if ($resultCheck > 0){
@@ -112,13 +144,16 @@
                 <div class="blog">
                     <div class="blog__thumb">
                         <a href="blog-details.html">
-                            <img src="<?php  echo $row['image'];?>" alt="blog images">
+                            <img src="images/<?php  echo $row['image'];?>" alt="blog images" width="500" height="300">
                         </a>
+                        <div class="pp__food__prize">
+                            <span><?php  echo $row['cost'];?></span>
+                        </div>
                     </div>
                     <div class="blog__details">
                         <h2><a href="blog-details.html"><?php  echo $row['name'];?></a></h2>
                         <span><?php  echo $row['date'];?></span>
-                        <p><?php  echo $row['more'];?></p>
+                        <p><?php  echo $row['comment'];?></p>
                         <div class="blog__btn">
                             <a class="food__btn btn--green" href="blog-details.html">Захиалга хийх</a>
                         </div>

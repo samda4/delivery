@@ -37,19 +37,22 @@ $idc = mysqli_real_escape_string($link, $_POST['idc']);
 $image = mysqli_real_escape_string($link, $_POST['image']);
 $date = mysqli_real_escape_string($link, $_POST['date']);
 $r_id = mysqli_real_escape_string($link, $_POST['r_id']);
+$top = mysqli_real_escape_string($link, $_POST['top']);
+$page_no = mysqli_real_escape_string($link, $_POST['page_no']);
+
 
 if($file_name !=""){
 $sql = "UPDATE best_food SET name='$name', comment = '$comment', cost = '$cost', idc = '$idc', 
-image = '$file_name', date='$date' WHERE id ='$id'";
+image = '$file_name', date='$date', top='$top' WHERE id ='$id'";
 }
 else{
     $sql = "UPDATE best_food SET name='$name', comment = '$comment', cost = '$cost', idc = '$idc', 
-     date='$date' WHERE id ='$id'";  
+     date='$date', top='$top' WHERE id ='$id'";  
 }
 // Attempt insert query execution
 if ($link->query($sql) === TRUE) { 
-        header('Location: http://localhost/delivery/food_index.php?&id='.$r_id);
-    } 
+        header('Location: http://localhost/delivery/food_index.php?&id='.$r_id.'&page_no='.$page_no);
+    }
  else { 
      echo "Error: " . $sql . "<br>" . $link->error; 
     }

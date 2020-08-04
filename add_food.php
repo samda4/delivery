@@ -1,18 +1,13 @@
 <?php include("includes/restaurant_header.php"); ?>
 <div class="main-panel">
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Хоол</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                            <span class="navbar-toggler-icon icon-bar"></span>
-                        </button>
-                </div>
-            </nav>
+            <div class="transition_link">
+            <?php
+            $sql = "SELECT * FROM restaurant where id= ".$_GET['id']."; ";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result) ?>
+            <a href="restaurant_index.php">Ресторан</a><a href="food_index.php?&id=<?php echo $row['id']; ?>"> &rsaquo;&rsaquo; Хоол</a>
+            <a href="add_food.php?&id=<?php echo $row['id']; ?>"> &rsaquo;&rsaquo; Хоол нэмэх</a>
+            </div>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
@@ -39,7 +34,8 @@
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Хоолны тайлбар</label>
                                                         <div class="form-group">
-                                                            <input type="text" id="comment" name="comment" class="form-control" />
+                                                            <textarea name="comment" id="comment" rows="10" cols="80">
+                                                            </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -57,12 +53,10 @@
                                                         <label class="bmd-label-floating">Огноо</label>
                                                         <div class="form-group">
 
-                                                            <input type="date" value="2020-05-21" name="date" id="date">
+                                                            <input type="date" name="date" id="date">
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Ангилал</label>
@@ -75,6 +69,16 @@
                                                                     <option value="4">Тахиа</option>
                                                                     <option value="5">Олон үндэстэний</option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Онцлох</label>
+                                                        <div class="form-group">
+                                                            <div class="custom-select" style="width: 200px;">
+                                                            <input type="checkbox" id="top" name="top">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -99,4 +103,4 @@
                             </div>
                         </div>
                     </div>
-                    <?php include("includes/admin_footer.php"); ?>
+<?php include("includes/admin_footer.php"); ?>

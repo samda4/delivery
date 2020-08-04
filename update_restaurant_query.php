@@ -34,20 +34,20 @@ $id = mysqli_real_escape_string($link, $_POST['id']);
 $name = mysqli_real_escape_string($link, $_POST['name']);
 $comment = mysqli_real_escape_string($link, $_POST['comment']);
 $phone = mysqli_real_escape_string($link, $_POST['phone']);
-$res_link = mysqli_real_escape_string($link, $_POST['link']);
+$top = mysqli_real_escape_string($link, $_POST['top']);
 $image = mysqli_real_escape_string($link, $_POST['image']);
 $address = mysqli_real_escape_string($link, $_POST['address']);
 if($file_name !=""){
-$sql = "UPDATE restaurant SET name='$name', comment = '$comment', phone = '$phone', link = '$res_link', 
+$sql = "UPDATE restaurant SET name='$name', comment = '$comment', phone = '$phone', top = '$top', 
 image = '$file_name', address='$address' WHERE id ='$id'";
 }
 else{
-    $sql = "UPDATE restaurant SET name='$name', comment = '$comment', phone = '$phone', link = '$res_link', 
+    $sql = "UPDATE restaurant SET name='$name', comment = '$comment', phone = '$phone', top = '$top', 
      address='$address' WHERE id ='$id'";  
 }
 // Attempt insert query execution
 if ($link->query($sql) === TRUE) { 
-    header('Location: http://localhost/delivery/restaurant_index.php');
+    header('Location: http://localhost/delivery/restaurant_index.php?page_no='.$_POST['page_no']);
  } 
  else { 
      echo "Error: " . $sql . "<br>" . $link->error; 

@@ -10,7 +10,7 @@ $sql = "DELETE FROM best_food WHERE id='$id'";
 
 
 if ($link->query($sql) === TRUE) {
-    header('Location: http://localhost/delivery/food_index.php');
+    header('Location: http://localhost/delivery/food_index.php?&id='.$_POST['r_id'].'&page_no='.$_POST['page_no']);
   echo "Амжилттай устгагдлаа";
 } else {
   echo "Error deleting record: " . $link->error;
